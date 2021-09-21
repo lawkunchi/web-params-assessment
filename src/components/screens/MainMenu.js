@@ -8,9 +8,8 @@ import {
 } from 'react-native';
 import Button from '../Button';
 import { connect } from 'react-redux';
-import { startQuizSelection } from '../../actions';
-import { scoreBoard } from '../../actions';
-
+import { startQuizSelection, goToScoreBoard} from '../../actions';
+import { scale, moderateScale, verticalScale} from '../../Scaling';
 class MainMenu extends React.Component {
 
       constructor(props){
@@ -18,7 +17,7 @@ class MainMenu extends React.Component {
       }
 
       componentWillMount() {
-          this.props.quizAttemptFetch();
+          // this.props.quizAttemptFetch();
         }
   
       async componentDidMount() {
@@ -27,13 +26,15 @@ class MainMenu extends React.Component {
 
       render() {
             return (
-                  <View>
-                        <Text> TRIVIA QUIZ </Text>
+                  <View style={styles.container}>
+                        <View style={styles.titleContainer}>
+                              <Text style={styles.title}> TRIVIA QUIZ </Text>
+                        </View>
                         <Button  onPress={this.props.startQuizSelection}>
                               Start
                         </Button>
 
-                        <Button  onPress={this.props.scoreBoard}>
+                        <Button  onPress={this.props.goToScoreBoard}>
                               Score Board
                         </Button>
                   </View>
@@ -41,8 +42,27 @@ class MainMenu extends React.Component {
       }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  titleContainer: {
+    flex: 1,
+    marginTop: scale(60),
+    alignSelf: 'center',
+    justifyContent: 'flex-start',
+  },
+  title: {
+    fontFamily: "game-title",
+    color: '#000000',
+    fontSize: moderateScale(50)
+  },
+});
+
+
 const mapStateToProps = (state) => {
       return state;
 };
 
-export default connect(mapStateToProps)(MainMenu);
+export default connect(mapStateToProps, { startQuizSelection, goToScoreBoard })(MainMenu);

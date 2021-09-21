@@ -12,12 +12,13 @@ import {
       QUIZ_ATTEMPT_OVER,
       QUIZ_SELECT_OPTIONS_ATTEMPT,
       QUIZ_ATTEMPT_DB_FETCH,
-      QUIZ_ATTEMPT_DB_SAVE
+      QUIZ_ATTEMPT_DB_SAVE,
+      QUIZ_ATTEMPT_BOARD
 }    from './types';
 import { shuffleArray } from '../Utils';
 import * as TriviaAPI from '../TriviaAPI';
 
-// import db from '../firebase.config';
+import db from '../firebase.config';
 
 
 export const categoryFetch = () => {
@@ -48,12 +49,12 @@ export const quizFetch = (selectedCategoryId, numberOfQuestions) => {
 
                   const formatedQuestions = questions.map(
                         question => {
-                              let options = question.incorrectAnswers;
+                              let options = question.incorrectAnswers.slice(0,3);
                               options.push(question.correctAnswer);
                               options = shuffleArray(options);
 
                               return {
-                                    options: question.incorrectAnswers,
+                                    options: options,
                                     category: question.category,
                                     correct_answer: question.correctAnswer,
                                     question: question.question
@@ -85,7 +86,7 @@ export const nextQuestion = (currentAnswer, currentQuestionIndex, questions, tot
           else {
             console.log(totalScore);
             dispatch({ type: QUIZ_ATTEMPT_OVER, payload: totalScore });
-            Actions.scoreBoard({ type: 'reset' });
+            Actions.attemptOver({ type: 'reset' });
           }
       }
 };
@@ -118,40 +119,53 @@ export const goToMainMenu = () => {
 
 export const goToScoreBoard = () => {
       return (dispatch) => {
-            dispatch({ type: QUIZ_ATTEMPT_OVER });
+            dispatch({ type: QUIZ_ATTEMPT_BOARD });
             Actions.scoreBoard({ type: 'reset' });
       }
 };
 
+export const goToAttemptOver = () => {
+      return (dispatch) => {
+            dispatch({ type: QUIZ_ATTEMPT_OVER });
+            Actions.attemptOver({ type: 'reset' });
+      }
+};
 
-/*export const quizAttemptFetch = () => {
 
-      const response = db.collection('QuizAttemps');
-      const data = response.data;
-
-      db.ref('/quizAttempt').on('value', querySnapShot => {
-            let data = querySnapShot.val() ? querySnapShot.val() : {};
-            let quizAttempts = {...data};
-      });
+export const quizAttemptFetch = () => {
 
       return (dispatch) => {
-          dispatch({ type: QUIZ_ATTEMPT_DB_FETCH, payload: quizAttempts });
-          Actions.fetchQuizAttempts({ type: 'reset' });
+           db.ref('/attempts').on('value', querySnapShot => {
+                  let data = querySnapShot.val() ? querySnapShot.val() : {};
+                  const quizAttempts = {...data};
+                  dispatch({ type: QUIZ_ATTEMPT_DB_FETCH, payload: quizAttempts });
+            });
         }
 }
 
-export const quizAttemptSaveToDB = (categoryId, totalScore) => {
+export const quizAttemptSaveToDB = (categoryId = null, totalScore =null) => {
 
-      const dataToSave = {
-            "category": categoryId,
-            "totalScore": totalScore,
-            "time": (new Date).getTime(),
-      };
+      const dataToSave = db.ref('/attempts').push();
 
-      db.ref('/quizAttempt').push(dataToSave);
+
+      dataToSave
+        .set({
+            category: categoryId,
+            totalScore: totalScore,
+            time: (new Date).getTime(),
+        })
+        .then(() => console.log('Data updated.'));
+
+      // const dataToSave = {
+      //       "category": categoryId,
+      //       "totalScore": totalScore,
+      //       "time": (new Date).getTime(),
+      // };
+
+      // db.ref('/attempts').push(dataToSave);
 
       return (dispatch) => {
           dispatch({ type: QUIZ_ATTEMPT_DB_SAVE});
-          Actions.saveAttemptToDb({ type: 'reset' });
+          // Actions.scoreBoard({ type: 'reset' });
       }
-}*/
+}

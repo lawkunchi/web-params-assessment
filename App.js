@@ -4,6 +4,10 @@ import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import reducers from './src/reducers';
 import Router from './src/Router';
+// import Navigation from './src/Navigation';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createDrawerNavigator } from '@react-navigation/drawer';
+
 
 export default class App extends React.Component {
 
@@ -12,6 +16,9 @@ export default class App extends React.Component {
             return (
                   <Provider store={store}>
                         <Router />
+                        {/*<NavigationContainer>
+                              <Navigation />
+                        </NavigationContainer>*/}
                   </Provider>
             );
       }

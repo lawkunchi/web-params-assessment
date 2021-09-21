@@ -8,7 +8,8 @@ import {
       QUIZ_NEXT_QUESTION,
       QUIZ_ATTEMPT_OVER,
       QUIZ_ATTEMPT_DB_SAVE,
-      QUIZ_ATTEMPT_DB_FETCH
+      QUIZ_ATTEMPT_DB_FETCH,
+      QUIZ_ATTEMPT_BOARD
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -29,7 +30,7 @@ const INITIAL_STATE = {
       }],
       selectedCategoryId: -1,
       numberOfQuestions: 10,
-      quizAttempts: 0
+      quizAttempts: []
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -40,6 +41,8 @@ export default (state = INITIAL_STATE, action) => {
 
             case QUIZ_SELECT_OPTIONS_ATTEMPT:
                   return INITIAL_STATE;
+            case QUIZ_ATTEMPT_BOARD:
+                   return INITIAL_STATE;
 
             case QUIZ_START_ATTEMPT:
                   return { 
@@ -90,7 +93,7 @@ export default (state = INITIAL_STATE, action) => {
             case QUIZ_ATTEMPT_DB_FETCH: 
                   return {
                         ...state,
-                        quizAttempts: action.payload,
+                        quizAttempts: action.payload.quizAttempts,
                   };
             case QUIZ_ATTEMPT_DB_SAVE:
                   return {

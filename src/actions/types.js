@@ -9,4 +9,5 @@ export const QUIZ_NEXT_QUESTION = 'quiz_next_question';
 export const QUIZ_ATTEMPT_OVER = 'quiz_attempt_over';
 export const QUIZ_ATTEMPT_DB_SAVE = 'quiz_attempt_db_save';
 export const QUIZ_ATTEMPT_DB_FETCH = 'quiz_attempt_db_fetch';
+export const QUIZ_ATTEMPT_BOARD = 'quiz_attempt_board';
 

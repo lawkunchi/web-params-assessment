@@ -67,8 +67,6 @@ class QuizAttempt extends React.Component {
                   <Question
                         question={currentQuestion.question}
                         options={currentQuestion.options}
-                        type={currentQuestion.type}
-                        difficulty={currentQuestion.difficulty}
                         category={currentQuestion.category}
                         onItemSelected={this.handleAnswerSelection}
                   />
@@ -78,36 +76,6 @@ class QuizAttempt extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  countdownContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    alignSelf: 'center'
-  },
-  noDataContainer: {
-    flex: 1,
-    height: '100%',
-    width: '100%',
-    paddingTop: 0,
-    borderWidth: 2,
-    borderRadius: 8,
-    borderColor: '#ffffff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-  },
-  answerStatus: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    zIndex: 9999
-  },
-  noDataText: {
-    fontSize: moderateScale(20),
-    padding: scale(10),
-    textAlign: 'justify',
-  },
   container: {
     flex: 1,
     paddingTop: 0,

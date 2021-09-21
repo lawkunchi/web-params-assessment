@@ -52,17 +52,19 @@ class CategorySelection extends React.Component {
       
         <View style={styles.container}>
          
-          <View style={styles.Separator} />
-          <Text style={styles.headerText}> Select Category</Text>
-          <RNPickerSelect
-            style={pickerSelectStyles}
-            placeholder={{}}
-            value={this.state.selectedCategoryId}
-            items={this.props.categories}
-            onValueChange={this.handleCategorySelect}
-          />
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Select Category</Text>
+          </View>
+          <View style={styles.selectContainer}> 
+                <RNPickerSelect placeholder={{ label: "Select category", value: "" }}
+                  style={pickerSelectStyles}
+                  placeholder={{}}
+                  value={this.state.selectedCategoryId}
+                  items={this.props.categories}
+                  onValueChange={this.handleCategorySelect}
+                />
+          </View>
          
-          <View style={styles.Separator} />
           <Button onPress={this.handleStartQuiz}>
             Start Quiz
             </Button>
@@ -72,13 +74,16 @@ class CategorySelection extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  gameTitle: {
+  title: {
     fontFamily: 'select-font',
     color: '#000000',
     fontSize: moderateScale(60)
   },
-  gameTitleContainer: {
-    textAlign: 'center'
+  titleContainer: {
+    flex: 1,
+    marginTop: scale(60),
+    alignSelf: 'center',
+    justifyContent: 'flex-start',
   },
   container: {
     flex: 1,
@@ -89,6 +94,16 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
+
+  selectContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+    width: '90%',
+  },
+
+
   parentContainer: {
     flex: 1,
     width: '100%',
@@ -120,12 +135,9 @@ const styles = StyleSheet.create({
   Separator: {
     marginHorizontal: scale(-10),
     alignSelf: 'stretch',
-    borderTopWidth: 1,
-    borderTopColor: '#888888',
     marginTop: scale(24),
   },
   tabStyle: {
-    borderColor: '#D52C43',
     paddingHorizontal: scale(10),
   },
   activeTabStyle: {

@@ -4,6 +4,7 @@ import MainMenu from './components/screens/MainMenu';
 import CategorySelection from './components/screens/CategorySelection';
 import QuizAttempt from './components/screens/QuizAttempt';
 import ScoreBoard from './components/screens/ScoreBoard';
+import AttemptOver from './components/screens/AttemptOver';
 
 const RouterComponent = () => {
 
@@ -11,9 +12,10 @@ const RouterComponent = () => {
             <Router>
                   <Scene key="main" hideNavBar={true}>
                         <Scene key="mainMenu" component={MainMenu}   />
-                        <Scene key="categorySelection" component={CategorySelection} initial  />
+                        <Scene key="categorySelection" component={CategorySelection}   />
                         <Scene key="quizAttempt" component={QuizAttempt} />
-                        <Scene key="scoreBoard" component={ScoreBoard} />
+                        <Scene key="scoreBoard" component={ScoreBoard} initial/>
+                        <Scene key="attemptOver" component={AttemptOver} />
                   </Scene>
             </Router>
   );
