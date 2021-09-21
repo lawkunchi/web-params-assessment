@@ -7,3 +7,6 @@ export const QUIZ_FETCH_SUCCESS = 'quiz_fetch_success';
 export const QUIZ_FETCH_ERROR = 'quiz_fetch_error';
 export const QUIZ_NEXT_QUESTION = 'quiz_next_question';
 export const QUIZ_ATTEMPT_OVER = 'quiz_attempt_over';
+export const QUIZ_ATTEMPT_DB_SAVE = 'quiz_attempt_db_save';
+export const QUIZ_ATTEMPT_DB_FETCH = 'quiz_attempt_db_fetch';
+

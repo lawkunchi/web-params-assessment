@@ -2,39 +2,25 @@ import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { scale, moderateScale } from '../Scaling';
 
-/**
- * This object sets default values to the optional props.
- */
 const defaultProps = {
-  style: {},
-  onPress: () => {}
+      style: {},
+      onPress: () => {}
 };
 
-/**
- * @callback onPress
- */
 
-/**
- * @description	General Button component.
- * @constructor
- * @param {Object} props - The props that were defined by the caller of this component.
- * @param {onPress} props.onPress - The size of the spinner.
-*/
 const Button = ({ onPress, children, style }) => {
-  const { buttonStyle, textStyle } = styles;
+      const { buttonStyle, textStyle } = styles;
 
-  return (
-    <TouchableOpacity onPress={onPress} style={[buttonStyle, style]}>
-      <Text style={textStyle}>
-        {children}
-      </Text>
-    </TouchableOpacity>
-  );
+      return (
+            <TouchableOpacity onPress={onPress} style={[buttonStyle, style]}>
+                  <Text style={textStyle}>
+                        {children}
+                  </Text>
+            </TouchableOpacity>
+      );
 };
 
-/**
- * Button component StyleSheet.
- */
+
 const styles = {
   textStyle: {
     flex: 1,
@@ -57,7 +43,6 @@ const styles = {
   }
 };
 
-// Assign default values to the optional props
 Button.defaultProps = defaultProps;
 
 export default Button;

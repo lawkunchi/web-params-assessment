@@ -17,7 +17,7 @@ import {
 import { shuffleArray } from '../Utils';
 import * as TriviaAPI from '../TriviaAPI';
 
-import db from '../firebase.config'
+// import db from '../firebase.config';
 
 
 export const categoryFetch = () => {
@@ -117,37 +117,41 @@ export const goToMainMenu = () => {
 };
 
 export const goToScoreBoard = () => {
-  
-  return (dispatch) => {
-    dispatch({ type: QUIZ_ATTEMPT_OVER });
-    Actions.scoreBoard({ type: 'reset' });
-  }
+      return (dispatch) => {
+            dispatch({ type: QUIZ_ATTEMPT_OVER });
+            Actions.scoreBoard({ type: 'reset' });
+      }
 };
 
 
-
-export const quizAttemptFetch = () => {
+/*export const quizAttemptFetch = () => {
 
       const response = db.collection('QuizAttemps');
       const data = response.data;
 
+      db.ref('/quizAttempt').on('value', querySnapShot => {
+            let data = querySnapShot.val() ? querySnapShot.val() : {};
+            let quizAttempts = {...data};
+      });
+
       return (dispatch) => {
-          dispatch({ type: QUIZ_ATTEMPT_DB_FETCH, payload: data.docs });
-          Actions.saveAttemptToDb({ type: 'reset' });
+          dispatch({ type: QUIZ_ATTEMPT_DB_FETCH, payload: quizAttempts });
+          Actions.fetchQuizAttempts({ type: 'reset' });
         }
 }
 
-
-export const quizAttemptSave = (categoryId, totalScore) => {
+export const quizAttemptSaveToDB = (categoryId, totalScore) => {
 
       const dataToSave = {
             "category": categoryId,
             "totalScore": totalScore,
             "time": (new Date).getTime(),
       };
-      
+
+      db.ref('/quizAttempt').push(dataToSave);
+
       return (dispatch) => {
           dispatch({ type: QUIZ_ATTEMPT_DB_SAVE});
           Actions.saveAttemptToDb({ type: 'reset' });
-        }
-}
+      }
+}*/

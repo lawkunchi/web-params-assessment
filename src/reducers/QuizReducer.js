@@ -6,7 +6,9 @@ import {
       QUIZ_FETCH_SUCCESS,
       QUIZ_FETCH_ERROR,
       QUIZ_NEXT_QUESTION,
-      QUIZ_ATTEMPT_OVER
+      QUIZ_ATTEMPT_OVER,
+      QUIZ_ATTEMPT_DB_SAVE,
+      QUIZ_ATTEMPT_DB_FETCH
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -20,12 +22,9 @@ const INITIAL_STATE = {
       }],
       currentQuestionIndex:  0,
       totalScore: 0,
-      startTime: 0,
-      endTime: 0,
-      loading: true,
       error: true,
       categories: [{
-            label: 'Any',
+            label: '',
             value: -1
       }],
       selectedCategoryId: -1,
@@ -65,7 +64,6 @@ export default (state = INITIAL_STATE, action) => {
                          ...state, 
                         questions: action.payload, 
                         totalQuestionsSize: action.payload.length,
-                        startTime: (new Date).getTime(),
                         loading: false,
                         error: '',  
                   };
@@ -73,7 +71,6 @@ export default (state = INITIAL_STATE, action) => {
             case QUIZ_FETCH_ERROR:
                   return { 
                         ...state, 
-                        startTime: (new Date).getTime(),
                         loading: false,
                         error: true,
                   };
@@ -89,7 +86,6 @@ export default (state = INITIAL_STATE, action) => {
                   return { 
                         ...state, 
                         totalScore: action.payload,
-                        endTime: (new Date).getTime(),
                   };
             case QUIZ_ATTEMPT_DB_FETCH: 
                   return {

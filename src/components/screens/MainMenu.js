@@ -16,9 +16,13 @@ class MainMenu extends React.Component {
       constructor(props){
 		super(props);
       }
+
+      componentWillMount() {
+          this.props.quizAttemptFetch();
+        }
   
       async componentDidMount() {
-    
+      
       }
 
       render() {

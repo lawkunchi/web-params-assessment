@@ -11,46 +11,39 @@ import { scale, moderateScale, verticalScale} from '../Scaling';
 
 
 const propTypes = {
-  category: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+      category: PropTypes.string.isRequired,
+      options: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 
 const defaultProps = {
-  onItemSelected: () => { },
+      onItemSelected: () => { },
 };
 
 function Question(props) {
-  return (
-    <View style={styles.questionDataContainer}>
-
-      <View style={styles.questionData}>
-
-        <Text style={styles.questionDescription}>{props.question}</Text>
-
-      </View>
-
-      <FlatList
-          style={styles.questionOptions}
-          data={props.options}
-          contentContainerStyle={styles.questionOptionsContainer}
-          renderItem={({ item }) => (
-            <QuestionOptionItem
-              optionDescription={item}
-              onPressItem={props.onItemSelected}
-            />
-          )}
-          keyExtractor={(item, index) => `${index}-${item}`}
-          onPressItem={props.onItemSelected}
-          scrollEnabled={true}
-        />
-    </View>
-  );
+      return (
+            <View style={styles.questionDataContainer}>
+                  <View style={styles.questionData}>
+                        <Text style={styles.questionDescription}>{props.question}</Text>
+                  </View>
+                  <FlatList
+                        style={styles.questionOptions}
+                        data={props.options}
+                        contentContainerStyle={styles.questionOptionsContainer}
+                        renderItem={({ item }) => (
+                              <QuestionOptionItem
+                                    optionDescription={item}
+                                    onPressItem={props.onItemSelected}
+                              />
+                        )}
+                        keyExtractor={(item, index) => `${index}-${item}`}
+                        onPressItem={props.onItemSelected}
+                        scrollEnabled={true}
+                  />
+            </View>
+      );
 }
 
-/**
- * Question component StyleSheet.
- */
 const styles = StyleSheet.create({
   questionDataContainer: {
     flex: 1,
@@ -87,9 +80,7 @@ const styles = StyleSheet.create({
   }
 });
 
-// Type checking the props of the component
 Question.propTypes = propTypes;
-// Assign default values to the optional props
 Question.defaultProps = defaultProps;
 
 export default Question;

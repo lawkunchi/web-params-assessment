@@ -11,24 +11,10 @@ import * as actions from '../../actions';
 import { scale, moderateScale } from '../../Scaling';
 
 
-
-const COUNTDOWN_TIME = 10;
-
-/**
- * @description	Trivia Game Screen.
- * @constructor
- */
-class TriviaGame extends React.Component {
+class QuizAttempt extends React.Component {
 
   constructor(props){
 		super(props);
-		this.state = {
-      answerStatus: false,
-      answerType: 'correct',
-      fontLoaded: false,
-      countdownTime: COUNTDOWN_TIME,
-      soundController: null,
-		};
   }
 
  
@@ -40,12 +26,11 @@ class TriviaGame extends React.Component {
   }
 
   async componentDidMount() {
-    // Preload sound controller
    
   }
 
   handleAnswerSelection = (questionOption) => {
-    if(this.state.answerStatus) return;
+    // if(this.state.answerStatus) return;
     const {
       currentQuestionIndex,
       currentQuestion,
@@ -92,9 +77,6 @@ class TriviaGame extends React.Component {
   }
 }
 
-/**
- * TriviaScreen component StyleSheet.
- */
 const styles = StyleSheet.create({
   countdownContainer: {
     flexDirection: 'row',
@@ -131,7 +113,6 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   headerContainer: {
-    //flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     paddingRight: scale(24),
@@ -159,7 +140,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ trivia }) => {
+const mapStateToProps = ({ quiz }) => {
   const { 
     categories,
     currentQuestionIndex,
@@ -168,11 +149,9 @@ const mapStateToProps = ({ trivia }) => {
     questions,
     totalScore,
     selectedCategoryId,
-    selectedDifficulty,
     numberOfQuestions
-  } = trivia;
+  } = quiz;
 
-  // console.log(questions[currentQuestionIndex]);
 
   return {
     currentQuestion: questions[currentQuestionIndex],
@@ -186,10 +165,9 @@ const mapStateToProps = ({ trivia }) => {
     questions,
     totalScore,
     selectedCategoryId,
-    selectedDifficulty,
   };
 };
 
 export default connect(mapStateToProps,
   actions
-)(TriviaGame);
+)(QuizAttempt);

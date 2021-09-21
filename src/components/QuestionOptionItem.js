@@ -8,50 +8,30 @@ import {
 import PropTypes from 'prop-types';
 import { scale, moderateScale } from '../Scaling';
 
-/**
- * This object is used for type checking the props of the component.
- */
 const propTypes = {
-  optionDescription: PropTypes.string.isRequired,
-  onPressItem: PropTypes.func.isRequired,
+      optionDescription: PropTypes.string.isRequired,
+      onPressItem: PropTypes.func.isRequired,
 };
 
-/**
- * @callback onPressItem
- * @param {string} selected - Text of the option selected.
- */
-
-/**
- * @description	Individual quiz question option component.
- * @constructor
- * @param {Object} props - The props that were defined by the caller of this component.
- * @param {string} props.optionDescription - The text of the option.
- * @param {onPressItem} props.onPressItem - Executed when user selects an option.
- */
 class QuestionOptionItem extends PureComponent {
 
-  _onPress = () => {
-    this.props.onPressItem(this.props.optionDescription);
-  };
+      _onPress = () => {
+            this.props.onPressItem(this.props.optionDescription);
+      };
 
-  render() {
-    const { optionDescription } = this.props;
+      render() {
+            const { optionDescription } = this.props;
 
-    return (
-      <TouchableOpacity
-        onPress={this._onPress}
-      >
-        <View style={styles.quizOption}>
-          <Text style={styles.quizOptionDescription}>{optionDescription}</Text>
-        </View>
-      </TouchableOpacity>
-    );
-  }
+            return (
+                  <TouchableOpacity onPress={this._onPress}>
+                        <View style={styles.quizOption}>
+                              <Text style={styles.quizOptionDescription}>{optionDescription}</Text>
+                        </View>
+                  </TouchableOpacity>
+            );
+      }
 }
 
-/**
- * QuestionOptionItem component StyleSheet.
- */
 const styles = StyleSheet.create({
   quizOption: {
     flex: 1,
@@ -76,7 +56,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// Type checking the props of the component
 QuestionOptionItem.propTypes = propTypes;
 
 export default QuestionOptionItem;

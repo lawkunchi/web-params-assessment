@@ -13,10 +13,6 @@ import * as actions from '../../actions';
 import { scale, moderateScale, verticalScale} from '../../Scaling';
 
 
-/**
- * @description	Trivia setup page screen.
- * @constructor
- */
 class CategorySelection extends React.Component {
 
   constructor() {
@@ -75,7 +71,6 @@ class CategorySelection extends React.Component {
   }
 }
 
-/* TriviaSelection StyleSheet */
 const styles = StyleSheet.create({
   gameTitle: {
     fontFamily: 'select-font',
@@ -141,7 +136,6 @@ const styles = StyleSheet.create({
   },
 });
 
-/* RNPickerSelect StyleSheet */
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
       fontSize: scale(24),
@@ -153,7 +147,7 @@ const pickerSelectStyles = StyleSheet.create({
       borderColor: 'gray',
       borderRadius: 4,
       color: 'black',
-      paddingRight: 30, // to ensure the text is never behind the icon
+      paddingRight: 30, 
   },
   inputAndroid: {
       paddingHorizontal: 10,
@@ -161,12 +155,12 @@ const pickerSelectStyles = StyleSheet.create({
       borderWidth: 0.5,
       borderRadius: 8,
       color: 'black',
-      paddingRight: 30, // to ensure the text is never behind the icon
+      paddingRight: 30, 
   },
 });
 
-const mapStateToProps = ({ trivia }) => {
-  const { error, loading, categories } = trivia;
+const mapStateToProps = ({ quiz }) => {
+  const { error, loading, categories } = quiz;
 
   return {
     error,

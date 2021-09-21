@@ -8,8 +8,7 @@ import {
 } from 'react-native';
 import Button from '../Button';
 import { connect } from 'react-redux';
-import { startQuizSelection } from '../../actions';
-import { quizAttemptsFetch } from '../../actions';
+// import { quizAttemptSaveToDB } from '../../actions';
 
 
 class ScoreBoard extends React.Component {
@@ -23,14 +22,14 @@ class ScoreBoard extends React.Component {
       }
 
       componentWillMount() {
-          this.props.quizAttemptSave(this.props.trivia.categotyId, this.props.trivia.totalScore);
+          // this.props.quizAttemptSaveToDB(this.props.quiz.categotyId, this.props.quiz.totalScore);
       }
 
 
       render() {
             return (
                   <View>
-                        <Text> SCORE : {this.props.trivia.totalScore} </Text>
+                        <Text> SCORE : {this.props.quiz.totalScore} </Text>
                   </View>
             )
       }
