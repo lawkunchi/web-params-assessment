@@ -1,17 +1,14 @@
 import React from 'react';
 import {
-	ImageBackground,
-	Linking,
 	StyleSheet,
 	Text,
-	View,
+	View,FlatList
 } from 'react-native';
-import Button from '../Button';
 import { connect } from 'react-redux';
-import { scale, moderateScale, verticalScale} from '../../Scaling';
+import { scale, moderateScale} from '../../Scaling';
 import * as actions from '../../actions';
-import { Table, Row, Rows } from 'react-native-table-component';
 import db from '../../firebase.config';
+import Moment from 'moment';
 
 
 class ScoreBoard extends React.Component {
@@ -20,45 +17,55 @@ class ScoreBoard extends React.Component {
 		super(props);
 
 		this.state = {
-	      tableHead: ['Category', 'Score', 'Time'],
-	      tableData: []
-	    }
-	}
-
-	async componentDidMount() {
-		console.log(this.props.quizAttempts, 'aytsdsdio');
+			tableData: null,
+		}		
 
 	}
 
-	componentWillMount() {
-		// this.props.quizAttemptFetch();
+	UNSAFE_componentWillMount() {
 		db.ref('/attempts').on('value', querySnapShot => {
               let data = querySnapShot.val() ? querySnapShot.val() : {};
-              const quizAttempts = {...data};
+
+			  const quizAttempts = [];
+
+			  Object.keys(data).forEach(function(key) {
+				quizAttempts.push(data[key]);
+			  });
               this.setState({
               	tableData: quizAttempts,
             });
         });
 
+
 	}
 
 
 	render() {
-		let quizAttempts = ["dsd", "dsds"];
-		const state = this.state;
+		const friends = this.state.tableData;
 		return (
 			<View style={styles.container}>
 				<View style={styles.headerContainer}>
 					<Text style={styles.categoryText}>SCORE BOARD</Text>
 				</View>
-
-				<View style={styles.tableContainer}>
-		        <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-		          <Row data={state.tableHead} style={styles.tableText} textStyle={styles.tableText}/>
-		          <Rows data={state.tableData} textStyle={styles.tableText}/>
-		        </Table>
-		      </View>
-
+				
+				{this.state.tableData == null ? <Text>No Attempts Found</Text> : 
+				<View>
+						<FlatList 
+						keyExtractor = {(data) => data.time}
+						data ={friends}
+						renderItem={({item}) => {
+							console.log(item.category);
+							return (
+								<View style={styles.item}>
+									<Text style={styles.title}>Category: {item.category}</Text>
+									<Text style={styles.title}>Attempt Date: {Moment(item.time).format('d MMM')}</Text>
+									<Text >Total Score: {item.totalScore}</Text>
+								</View>
+							);
+						}}
+					/>
+				</View>
+				}
 			</View>
 		)
 	}
@@ -109,7 +116,17 @@ const styles = StyleSheet.create({
 		fontSize: moderateScale(18),
 		fontWeight: '900',
 	},
-});
+
+	  item: {
+		backgroundColor: '#f9c2ff',
+		padding: 20,
+		marginVertical: 8,
+		marginHorizontal: 16,
+	  },
+	  title: {
+		textTransform: 'capitalize',
+	  },
+	});
 
 const mapStateToProps = ({ quiz }) => {
   const { quizAttempts } = quiz;

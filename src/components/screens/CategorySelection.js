@@ -75,18 +75,15 @@ class CategorySelection extends React.Component {
 
 const styles = StyleSheet.create({
   title: {
-    fontFamily: 'select-font',
     color: '#000000',
-    fontSize: moderateScale(60)
+    fontSize: moderateScale(60),
+    marginBottom: scale(40),
   },
   titleContainer: {
-    flex: 1,
-    marginTop: scale(60),
     alignSelf: 'center',
     justifyContent: 'flex-start',
   },
   container: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
@@ -96,11 +93,11 @@ const styles = StyleSheet.create({
   },
 
   selectContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
     width: '90%',
+    marginBottom: scale(40),
   },
 
 
@@ -122,7 +119,6 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   headerText: {
-    fontFamily: 'select-font',
     padding: scale(8),
     fontSize: moderateScale(24),
     color: '#444444',

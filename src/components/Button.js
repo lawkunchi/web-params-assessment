@@ -28,10 +28,11 @@ const styles = {
     color: '#ffffff',
     fontSize: moderateScale(24),
     fontWeight:'normal',
-    textAlign: 'center',
     textShadowColor:'#000000',
     textShadowOffset:{width: 2, height: 2},
     textShadowRadius:0,
+    position: 'absolute',
+    textAlign: 'center',
   },
   buttonStyle: {
     height: moderateScale(60),

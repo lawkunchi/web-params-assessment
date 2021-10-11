@@ -9,19 +9,11 @@ import {
 import Button from '../Button';
 import { connect } from 'react-redux';
 import { startQuizSelection, goToScoreBoard} from '../../actions';
-import { scale, moderateScale, verticalScale} from '../../Scaling';
+import { scale, moderateScale} from '../../Scaling';
 class MainMenu extends React.Component {
 
       constructor(props){
 		super(props);
-      }
-
-      componentWillMount() {
-          // this.props.quizAttemptFetch();
-        }
-  
-      async componentDidMount() {
-      
       }
 
       render() {
@@ -48,13 +40,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   titleContainer: {
-    flex: 1,
     marginTop: scale(60),
     alignSelf: 'center',
     justifyContent: 'flex-start',
+    marginBottom: scale(250)
   },
   title: {
-    fontFamily: "game-title",
     color: '#000000',
     fontSize: moderateScale(50)
   },

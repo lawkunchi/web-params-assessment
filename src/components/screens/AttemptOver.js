@@ -40,7 +40,7 @@ class AttemptOver extends React.Component {
                                     Retake
                               </Button>
 
-                              <Button  onPress={this.props.goToscoreBoard}>
+                              <Button  onPress={this.props.goToScoreBoard}>
                                     Score Board
                               </Button>
                         </View>

@@ -1,13 +1,10 @@
 import { Actions } from 'react-native-router-flux';
 import {
       QUIZ_MAIN_MENU,
-      QUIZ_SELECT_OPTIONS_GAME,
-      QUIZ_START_GAME,
       QUIZ_FETCH_CATEGORIES_SUCCESS,
       QUIZ_FETCH_SUCCESS,
       QUIZ_FETCH_ERROR,
       QUIZ_NEXT_QUESTION,
-      QUIZ_GAME_OVER,
       QUIZ_START_ATTEMPT,
       QUIZ_ATTEMPT_OVER,
       QUIZ_SELECT_OPTIONS_ATTEMPT,
