@@ -26,7 +26,7 @@ class MainMenu extends React.Component {
                               Start
                         </Button>
 
-                        <Button  onPress={this.props.goToScoreBoard}>
+                        <Button  onPress={() => console.log(this.props.navigation.navigate('scoreBoard'))}>
                               Score Board
                         </Button>
                   </View>

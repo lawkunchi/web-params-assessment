@@ -2,8 +2,10 @@ import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainMenu from './components/screens/MainMenu';
 import ScoreBoard from './components/screens/ScoreBoard';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
 function Navigation() {
 
@@ -15,16 +17,16 @@ function Navigation() {
 
               <Drawer
                   hideNavBar
-                  key="drawerMenu"
-                  contentComponent={SideMenu}
+                  key="scoreBoard"
+                  contentComponent={ScoreBoard}
                   drawerWidth={300}
                   drawerPosition="left"
                   >
-                  <Stack key="mainContainer">
+                  <Stack key="scoreBoard">
                         <Scene
-                        key="mainMenu"
-                        component={MainMenu}
-                        title="Home"
+                        key="scoreBoard"
+                        component={ScoreBoard}
+                        title="Score Board"
              
                         />
            

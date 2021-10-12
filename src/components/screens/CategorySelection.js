@@ -68,6 +68,10 @@ class CategorySelection extends React.Component {
           <Button onPress={this.handleStartQuiz}>
             Start Quiz
             </Button>
+
+            <Button onPress={() => console.log(this.props.navigation.navigate('mainMenu'))}>
+            Go Home
+            </Button>
         </View>
     );
   }
